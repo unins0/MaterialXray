@@ -46,7 +46,8 @@ Create a clean native Android interface that is fast to scan and easy to maintai
 - Do not create a wrapper for a single call site. Extract a composable only when the same UI and behavior recur across screens.
 - Keep screen files focused. For a large screen, redesign one coherent section at a time instead of regenerating the whole file.
 - App bars keep the plain surface colour while content scrolls: no scroll-driven tint, no shadow, no edge-fade gradients over lists.
-- Floating overlays (FAB, connection card, tab rows) hover directly over the content with margins, and the list reserves bottom clearance so the last item can scroll clear of them.
+- The bottom navigation bar is one persistent, stable element: fixed height, always on screen, and never rebuilt or animated in and out while it is up. Tab strips and the full-mode connection card are detached floating elements - rounded on every corner, held clear of the bar by a gap - that travel with their own tab's page instead of docking onto the bar. The bar is flat and sits on its own surface step, and the floating elements on another, so the bar never merges with the elements above it or the cards below. Detail screens open above the bar and leave it in place. The compact connect FAB floats over the list, and lists reserve bottom clearance so the last item can scroll clear of the floating elements.
+- A tab strip is one pill bar sized exactly to its pills: the options divide the full width and fill it edge to edge, the unselected ones showing the shared background. Selection reads through the filled container alone - no checkmark, no stroke, and no second layer around the pills to fatten them.
 
 ## Motion and state
 
